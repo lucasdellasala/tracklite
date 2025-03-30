@@ -70,7 +70,7 @@ A simple test client is provided to simulate device messages.
 Run the client:
 
 ```bash
-go run client.go
+go run scripts/client/main.go
 ```
 
 The server logs the incoming location updates, and the client should display a confirmation:

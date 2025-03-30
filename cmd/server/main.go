@@ -7,6 +7,7 @@ import (
 	pb "tracklite/api/proto"
 	"tracklite/internal/server"
 	"google.golang.org/grpc"
+	"tracklite/internal/worker"
 )
 
 func main() {
@@ -14,6 +15,8 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error listening: %v", err)
 	}
+
+	worker.StartWorkerPool(5)
 
 	s := grpc.NewServer()
 	pb.RegisterTrackerServiceServer(s, &server.Server{})
