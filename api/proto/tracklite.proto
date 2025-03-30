@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package tracklite;
+
+option go_package = "tracklite/api/proto;tracklite";
+
+message LocationUpdate {
+  string device_id = 1;
+  double latitude = 2;
+  double longitude = 3;
+  int64 timestamp = 4; // UNIX timestamp
+  float battery_level = 5; // %
+  string signal_quality = 6; // "3G", "4G", "5G", "WiFi"
+  float gps_accuracy = 7; // meters
+}
+
+message LocationUpdateResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+service TrackerService {
+  rpc SendLocation(LocationUpdate) returns (LocationUpdateResponse);
+}
